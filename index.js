@@ -1,53 +1,65 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {  
   // initializes the board
   init();
 
-  const moves = document.getElementById('move-button')
-  const movesCont = document.getElementById('moves-container')
-  const controlPanel = document.getElementById('control-panel')
+  let moveButton = document.querySelector("#move-button")
 
+  document.addEventListener("keydown", function(event) {
+    console.log(event)
+    let ul = document.querySelector("ul#moves-container")
+    let eventKey = event.key
 
-  moves.addEventListener("keydown", function(x) {
-    let allMoves = document.createElement('li')
-    if(x.key === "ArrowLeft") {
-      move("left")
-      allMoves.textContent = "left"
-      movesCont.append(allMoves)
-    } else if (x.key === "ArrowRight") {
-      move("right")
-      allMoves.textContent = "right"
-      movesCont.append(allMoves)
-    } else if (x.key === "ArrowUp") {
-      move("up")
-      allMoves.textContent = "up"
-      movesCont.append(allMoves)
-    } else if (x.key === "ArrowDown") {
-      move("down")
-      allMoves.textContent = "down"
-      movesCont.append(allMoves)
+    if(eventKey.startsWith("Arrow")) {
+      // event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "ArrowLeft" || event.key === "ArrowRight"
+      let li = document.createElement("li")
+      li.textContent = eventKey.slice(5).toLowerCase()
+      ul.append(li)
+      
+    // else if (event.key === "ArrowUp" ) {
+    //   let li = document.createElement("li")
+    //   li.textContent = "up"
+    //   ul.append(li)
+    // }
     }
   })
+  // moveButton.addEventListener("click", function(event) {
+  //   if (ul.children[0]) {
+  //     let li = document.querySelector("ul#moves-container li")
+  //     move(li.textContent)
+  //     li.remove()
+  //   }
+  // })
 
-  const movesArray = moves.querySelectorAll('li')
-// 
-// 
-// 
-// 
-  movesCont.addEventListener("click", function(event) {
-  
-    // move(movesArray[0].textContent)
-    // movesArray.unshift()
-    
-    if (event.target.tagName === 'LI') {
-      move(event.target.textContent) 
+  ul.addEventListener("click", function(event) {
+    console.log(event)
+    if(event.target.tagName === "LI") {
       event.target.remove()
-   } 
+    }
   })
-// 
-  // function moveList() {
-  //   let moveLeft = document.createElement('li')
-  //   moveLeft.textContent = 
-  // }
   
-  // ADD CODE HERE!
+  //Bonus Strategy 1 - using setTimeout
+  // moveButton.addEventListener("click", function() {
+  //   const liList = ul.querySelectorAll("li")
+  //   liList.forEach(function(li, index) {
+  //     const direction = li.textContent
+  //     setTimeout(function () {
+  //       move(direction)
+  //       li.remove()
+  //     }, 500 * (index + 1))
+      
+  //   })
+  // })
+
+  //Bonus Strategy 2 - using setInterval
+  moveButton.addEventListener("click", function(){
+    setInterval(function(){
+      let li = ul.querySelector("li")
+      let liText = li.textContent
+      move(liText)
+
+    })
+  })
+  
+
+ 
 });
