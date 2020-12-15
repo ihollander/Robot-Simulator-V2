@@ -24,7 +24,7 @@ move("right") // moves robot to the right
 
 ### Store the commands
 
-Your task is to add functionality to the page such that _when a user presses the arrow keys_, that direction (i.e. `left`, `down`, `right`, or `up`) is added to a list of directions on the right side of the robot's grid. We've already provided you with a `<ul>` element with an id set to `moves-container` - you just have to add `li` elements to it containing the direction that was inputted.
+<!-- Your task is to add functionality to the page such that _when a user presses the arrow keys_, that direction (i.e. `left`, `down`, `right`, or `up`) is added to a list of directions on the right side of the robot's grid. We've already provided you with a `<ul>` element with an id set to `moves-container` - you just have to add `li` elements to it containing the direction that was inputted.
 
 Example:
 
@@ -37,7 +37,7 @@ Example:
 </ul>
 ```
 
-![](robot_simulator_storing_moves.gif)
+![](robot_simulator_storing_moves.gif) -->
 
 ### Move the robot
 
