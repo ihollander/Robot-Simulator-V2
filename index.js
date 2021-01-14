@@ -11,7 +11,8 @@ const movesBtn = document.querySelector('#move-button')
 //Add and Handle events
 
 document.addEventListener("keydown", handleArrowPress);
-movesBtn.addEventListener("click", moveRobot)
+// movesBtn.addEventListener("click", moveRobot);
+movesBtn.addEventListener("click", autoMoveRobot);
 
 
 function handleArrowPress(e){
@@ -34,10 +35,27 @@ function createLi(direction){
   movesUl.append(li)
 }
 
-//move
-function moveRobot(e){
-  let moveLi = movesUl.querySelector('li')
+//move (moved to mouvement.js)
+// moveRobot()
 
-  move(moveLi.innerText)
-  moveLi.remove()
+// function moveRobot(e){
+//   let moveLi = movesUl.querySelector('li')
+
+//   move(moveLi.innerText)
+//   moveLi.remove()
+// }
+
+
+//automate move
+
+function autoMoveRobot(){
+
+  let moveTime = setInterval(robot, 1000);
+  function robot(){
+    if (movesUl.children.length === 0){
+      clearInterval(moveTime)
+    }else{
+      moveRobot()
+    }
+  }
 }

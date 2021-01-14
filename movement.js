@@ -90,3 +90,13 @@ function move(direction) {
     currentPosition = { x, y };
   }
 }
+
+
+function moveRobot(e){
+  if (movesUl.children.length > 0){
+  let moveLi = movesUl.querySelector('li')
+
+  move(moveLi.innerText)
+  moveLi.remove()
+  }
+}
