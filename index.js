@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.addEventListener ("keydown", function(event) { 
     const movement = document.createElement('li');
-    console.log(event.code)
+    
     switch (event.code) {
     
         case "ArrowLeft": 
@@ -29,16 +29,32 @@ document.addEventListener("DOMContentLoaded", function() {
         movement.innerHTML = "down";
         movesContainer.appendChild(movement)  
             break; 
-    } })
+            
+    
+    } 
+    movement.addEventListener("click", function(event){
+      event.target.remove()
+    })
+  })
 
     const moveButton = document.querySelector("button#move-button");
 
     moveButton.addEventListener("click", function(){
-      move(movesContainer.children[0].innerHTML)
-      movesContainer.children[0].remove()
-    })
+      if (movesContainer.children.length > 0){
+        let counter = movesContainer.children.length - 1
+        let startMove = setInterval(function(){
+        move(movesContainer.children[0].innerHTML);
+        movesContainer.children[0].remove();
+        if (counter === 0){ 
+          clearInterval(startMove)};
+        counter--;
+        
+      }, 500)
+    }})
 
-    
+
+
+  
 
 
 });
